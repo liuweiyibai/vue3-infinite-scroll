@@ -1,16 +1,35 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <div style="display: flex">
+    <template v-if="visible">
+      <HelloWorld :ref="setRefs" v-for="item in 3" :key="item" />
+    </template>
+  </div>
+  <button @click="visible = !visible">切换</button>
+  <button @click="onReset">重置</button>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import { defineComponent } from 'vue';
+import HelloWorld from './components/HelloWorld.vue';
 
 export default defineComponent({
-  name: "App",
+  name: 'App',
   components: {
     HelloWorld,
+  },
+  data() {
+    return {
+      visible: true,
+      refs: [] as any,
+    };
+  },
+  methods: {
+    setRefs(ref: any) {
+      this.refs.push(ref);
+    },
+    onReset() {
+      this.refs[0].reset();
+    },
   },
 });
 </script>
