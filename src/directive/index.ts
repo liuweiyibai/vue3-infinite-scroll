@@ -4,7 +4,7 @@ import type { BindingParams, CtxElement } from './type';
 import { ctx } from './constants';
 
 function throttle(this: any, func: () => void, wait: number) {
-  let timer: number | null = null;
+  let timer: NodeJS.Timeout | null = null;
   let callbackArgs: any;
   const context = this;
 
@@ -25,7 +25,7 @@ const getScrollTop = function (element: any) {
   if (element === window) {
     return Math.max(
       window.pageYOffset || 0,
-      document.documentElement.scrollTop,
+      document.documentElement.scrollTop
     );
   }
   return element.scrollTop;
@@ -51,7 +51,7 @@ const getScrollEventTarget = function (element: any) {
 };
 
 const getVisibleHeight = function (
-  element: Window & typeof globalThis & HTMLElement,
+  element: Window & typeof globalThis & HTMLElement
 ) {
   if (element === window) {
     return document.documentElement.clientHeight;
@@ -61,7 +61,7 @@ const getVisibleHeight = function (
 };
 
 const getElementTop = function (
-  element: Window & typeof globalThis & HTMLElement,
+  element: Window & typeof globalThis & HTMLElement
 ) {
   if (element === window) {
     return getScrollTop(window);
@@ -92,12 +92,12 @@ const doBind = function (this: any) {
 
   directive.scrollListener = throttle(
     doCheck.bind(directive),
-    directive.throttleDelay,
+    directive.throttleDelay
   );
 
   directive.scrollEventTarget.addEventListener(
     'scroll',
-    directive.scrollListener,
+    directive.scrollListener
   );
 
   if (directive.immediateCheck) {
@@ -201,7 +201,7 @@ const Directive: ObjectDirective<CtxElement, BindingParams> = {
     if (el && el[ctx] && el[ctx].scrollEventTarget)
       el[ctx].scrollEventTarget.removeEventListener(
         'scroll',
-        el[ctx].scrollListener,
+        el[ctx].scrollListener
       );
   },
 };

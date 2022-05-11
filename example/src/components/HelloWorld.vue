@@ -67,7 +67,6 @@ export default {
   margin: 0;
   list-style: none;
 }
-
 .infinite-list .infinite-list-item {
   display: flex;
   align-items: center;

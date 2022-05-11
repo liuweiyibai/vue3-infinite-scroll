@@ -21,3 +21,9 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# local docs
+todo-list.md
+*todo-list*.md
+docs
+yarn-error.log
